@@ -21,19 +21,25 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 
 	AActor* Owner = GetOwner();
-	FRotator NewRotation = FRotator(0.f, 60.f, 0.f);
-
+	FRotator NewRotation = FRotator(0.f, GetOpenDoorAngle(), 0.f);
 	Owner->SetActorRotation(NewRotation);
-	
-	
+
+
+
 }
 
 
 // Called every frame
-void UOpenDoor::TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction )
+void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
-	Super::TickComponent( DeltaTime, TickType, ThisTickFunction );
+	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
 }
+
+float UOpenDoor::GetOpenDoorAngle()
+{
+	return OpenDoorAngle;
+}
+
 
