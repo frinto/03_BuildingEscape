@@ -17,9 +17,12 @@ UOpenDoor::UOpenDoor()
 
 void UOpenDoor::OpenDoor()
 {
-	AActor* Owner = GetOwner();
-	FRotator NewRotation = FRotator(0.f, GetOpenDoorAngle(), 0.f);
-	Owner->SetActorRotation(NewRotation);
+	Owner->SetActorRotation(FRotator(0.f, GetOpenDoorAngle(), 0.f));
+}
+
+void UOpenDoor::CloseDoor()
+{
+	Owner->SetActorRotation(FRotator(0.f, GetCloseDoorAngle(), 0.f));
 }
 
 // Called when the game starts
@@ -27,10 +30,14 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 
+	//get the owner of the door
+	Owner = GetOwner();
+
+	//the pawn / player that will open the door
 	ActorThatOpensDoor = GetWorld()->GetFirstPlayerController()->GetPawn();
 
-
 }
+
 
 
 // Called every frame
@@ -43,8 +50,14 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	if (PressurePlate->IsOverlappingActor(ActorThatOpensDoor))
 	{
 		OpenDoor();
+		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
 
+	//check if time to close the door
+	if(GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+	{
+		CloseDoor();
+	}
 }
 
 float UOpenDoor::GetOpenDoorAngle()
@@ -52,4 +65,8 @@ float UOpenDoor::GetOpenDoorAngle()
 	return OpenDoorAngle;
 }
 
+float UOpenDoor::GetCloseDoorAngle()
+{
+	return CloseDoorAngle;
+}
 

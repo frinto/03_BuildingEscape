@@ -17,19 +17,31 @@ public:
 	void OpenDoor();
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
+	void CloseDoor();
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	float GetOpenDoorAngle();
 
+	float GetCloseDoorAngle();
+
 private:
 
 	UPROPERTY(EditAnywhere)
-		float OpenDoorAngle = 90.0f;
+		float OpenDoorAngle = 90.0F;
+
+	UPROPERTY(EditAnywhere)
+		float CloseDoorAngle = 0.0F;
 
 	UPROPERTY(EditAnywhere)
 		ATriggerVolume* PressurePlate;
+
+	UPROPERTY(EditAnywhere)
+		float DoorCloseDelay = 1.0F;
+
+	float LastDoorOpenTime;
+
+	AActor* Owner; // the owning door
 
 	AActor* ActorThatOpensDoor; //pawn inherits from actor you can use APawn to be very specific
 								//pawn is a actor.
