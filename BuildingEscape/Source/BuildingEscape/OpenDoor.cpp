@@ -14,7 +14,6 @@ UOpenDoor::UOpenDoor()
 	// ...
 }
 
-
 void UOpenDoor::OpenDoor()
 {
 	Owner->SetActorRotation(FRotator(0.f, GetOpenDoorAngle(), 0.f));
@@ -39,7 +38,6 @@ void UOpenDoor::BeginPlay()
 }
 
 
-
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
@@ -53,11 +51,12 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
 
-	//check if time to close the door
-	if(GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
+	//check if time to close the door.
+	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
 	{
 		CloseDoor();
 	}
+
 }
 
 float UOpenDoor::GetOpenDoorAngle()

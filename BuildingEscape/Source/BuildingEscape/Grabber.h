@@ -22,6 +22,9 @@ public:
 	virtual void TickComponent( float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction ) override;
 
 private:
+
+	//how far player can reach.
+	float Reach = 100.0f;
 	
 	
 };
