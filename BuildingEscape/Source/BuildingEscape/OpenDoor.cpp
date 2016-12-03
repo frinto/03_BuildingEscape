@@ -43,15 +43,15 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
-	//Poll trigger volume every frame
-	//if ActorThatOpensDoor is in the volume
+	//Poll trigger volume every frame.
+	//if ActorThatOpensDoor is in the volume.
 	if (PressurePlate->IsOverlappingActor(ActorThatOpensDoor))
 	{
 		OpenDoor();
 		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 	}
 
-	//check if time to close the door.
+	//check if time to close the door
 	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
 	{
 		CloseDoor();

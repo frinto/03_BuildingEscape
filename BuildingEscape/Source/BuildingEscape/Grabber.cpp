@@ -47,10 +47,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	DrawDebugLine(GetWorld(), PlayerViewPointLocation, LineTraceEnd, FColor(0, 255, 0), false, 0.0f, 0.0f, 10.0f);
 
-	//Ray-cast out to reach distance
+	//Ray-cast out to reach distance.
 
-
-
-	//See what we hit
+	//See what we hit.
 }
 
