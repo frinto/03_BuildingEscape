@@ -12,7 +12,6 @@ UGrabber::UGrabber()
 	// off to improve performance if you don't need them.
 	PrimaryComponentTick.bCanEverTick = true;
 
-	// ...
 }
 
 
@@ -49,11 +48,6 @@ void UGrabber::BeginPlay()
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s Missing Input Component"), *GetOwner()->GetName());
 	}
-
-
-
-
-
 }
 
 
