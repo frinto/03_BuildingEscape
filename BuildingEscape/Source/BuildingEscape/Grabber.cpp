@@ -88,7 +88,7 @@ void UGrabber::FindPhysicsHandleComponent()
 	}
 }
 
-//look for attached input component on appear at runtime
+//look for attached input component on appear at runtime.
 void UGrabber::SetupInputComponent()
 {
 	///Find attached Input Component that only appear at runtime
