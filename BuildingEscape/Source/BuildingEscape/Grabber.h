@@ -14,7 +14,7 @@ class BUILDINGESCAPE_API UGrabber : public UActorComponent
 public:
 	// Sets default values for this component's properties
 	UGrabber();
-	
+
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
@@ -44,5 +44,10 @@ private:
 
 	//return hit for first physics body in reach
 	const FHitResult GetFirstPhysicsBodyInReach();
-	
+
+	//returns current start of reach line
+	FVector GetReachLineStart();
+
+	//returns current end of reach line
+	FVector GetReachLineEnd();
 };
