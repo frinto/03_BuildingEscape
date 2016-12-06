@@ -43,6 +43,6 @@ private:
 
 	AActor* Owner; // the owning door
 
-	AActor* ActorThatOpensDoor; //pawn inherits from actor you can use APawn to be very specific
-								//pawn is a actor.
+	//returns total mass in kg
+	float GetTotalMassOfActorsOnPlate();
 };
