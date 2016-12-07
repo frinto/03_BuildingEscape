@@ -15,29 +15,16 @@ UOpenDoor::UOpenDoor()
 	// ...
 }
 
-void UOpenDoor::OpenDoor()
-{
-	//Owner->SetActorRotation(FRotator(0.f, GetOpenDoorAngle(), 0.f));
-
-	OnOpenRequest.Broadcast();
-}
-
-void UOpenDoor::CloseDoor()
-{
-	Owner->SetActorRotation(FRotator(0.f, GetCloseDoorAngle(), 0.f));
-}
-
 // Called when the game starts
 void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	Owner = GetOwner();
-	if(!PressurePlate)
+	if (!PressurePlate)
 	{
 		UE_LOG(LogTemp, Error, TEXT("%s missing pressure plate"), )
 	}
 }
-
 
 // Called every frame
 void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -45,28 +32,15 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	//Poll trigger volume every frame.
-	if (GetTotalMassOfActorsOnPlate() >= 50.0f) //TODO make into a parameter
+	if (GetTotalMassOfActorsOnPlate() >= TriggerMass)
 	{
-		OpenDoor();
-		LastDoorOpenTime = GetWorld()->GetTimeSeconds();
+		OnOpen.Broadcast();
+	}
+	else
+	{
+		OnClose.Broadcast();
 	}
 
-	//check if time to close the door
-	if (GetWorld()->GetTimeSeconds() - LastDoorOpenTime > DoorCloseDelay)
-	{
-		CloseDoor();
-	}
-
-}
-
-float UOpenDoor::GetOpenDoorAngle()
-{
-	return OpenDoorAngle;
-}
-
-float UOpenDoor::GetCloseDoorAngle()
-{
-	return CloseDoorAngle;
 }
 
 float UOpenDoor::GetTotalMassOfActorsOnPlate()
