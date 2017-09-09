@@ -2,4 +2,4 @@
 
 game made in unreal engine.
 
-Must move objects to find ways to escape room
+Must move objects to find ways to escape building.
